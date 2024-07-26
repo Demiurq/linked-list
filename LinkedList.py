@@ -127,3 +127,14 @@ class LinkedList:
             before = temp
             temp = after
 
+    def binary_to_decimal(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        i = self.length - 1
+        decimal = 0
+        while temp is not None:
+            decimal += temp.value * (2 ** i)
+            i -= 1
+            temp = temp.next
+        return decimal
