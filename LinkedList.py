@@ -138,3 +138,41 @@ class LinkedList:
             i -= 1
             temp = temp.next
         return decimal
+
+    def reverse_between(self, start_index, end_index):
+        if self.length == 0 or self.length == 1:
+            return None
+        dummy = Node(0)
+        dummy.next = self.head
+        prev = dummy
+
+        for _ in range(start_index):
+            prev = prev.next
+
+        curr = prev.next
+
+        for _ in range(end_index - start_index):
+            temp = curr.next
+            curr.next = temp.next
+            temp.next = prev.next
+            prev.next = temp
+
+        if start_index == 0:
+            self.head = dummy.next
+
+        return self.head
+
+    def bubble_sort(self):
+        if self.length < 2:
+            return
+
+        sorted_until = None
+
+        while sorted_until != self.head.next:
+            current = self.head
+            while current.next != sorted_until:
+                next_node = current.next
+                if current.value > next_node.value:
+                    current.value, next_node.value = next_node.value, current.value
+                current = current.next
+            sorted_until = current
